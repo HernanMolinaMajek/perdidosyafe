@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 
 const NavBar = ({ authenticated, userName, logOut }) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  
+
   const toogleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
 
   return (
     <nav className="flex flex-col items-start bg-white mb-3 lg:flex-row lg:justify-between lg:items-center lg:mx-5 relative ">
-      
       <div className="flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
         <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
           <svg fill="#969696" viewBox="0 0 100 80" width="25" height="25">
@@ -53,6 +52,16 @@ const NavBar = ({ authenticated, userName, logOut }) => {
                   onClick={() => {
                     setIsMenuActive(false);
                   }}
+                  to={"/"}
+                >
+                  Home
+                </Link>
+              </div>
+              <div className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
+                <Link
+                  onClick={() => {
+                    setIsMenuActive(false);
+                  }}
                   to={"/petAdmin"}
                 >
                   Mis mascotas
@@ -61,7 +70,6 @@ const NavBar = ({ authenticated, userName, logOut }) => {
 
               <div
                 onClick={logOut}
-                href="#responsive-header"
                 className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 "
               >
                 Cerrar sesion
@@ -69,10 +77,17 @@ const NavBar = ({ authenticated, userName, logOut }) => {
             </div>
           ) : (
             <div>
-              <div
-                href="formulario de inicio de sesion"
-                className="block lg:inline-block lg:mt-0  hover:text-white lg:mx-6 "
-              >
+              <div className="block lg:inline-block lg:mt-0 hover:text-white lg:mx-6 lg:hidden ">
+                <Link
+                  onClick={() => {
+                    setIsMenuActive(false);
+                  }}
+                  to={"/"}
+                >
+                  Home
+                </Link>
+              </div>
+              <div className="block mt-4  lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -82,10 +97,7 @@ const NavBar = ({ authenticated, userName, logOut }) => {
                   Registrase
                 </Link>
               </div>
-              <div
-                href="formulario de inicio de sesion"
-                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 "
-              >
+              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
