@@ -1,0 +1,133 @@
+
+/* NavBar.jsx */
+
+.NavBar1{
+    background-color: #F4CA36;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    height: 80px;
+}
+
+.text-red-400{
+    font-family: 'Segoe UI';
+    color: #E16C40 ;
+    font-size: 26px;
+    font-weight: bold;
+    position: relative; bottom: 14px;
+}
+
+.log{
+    width: 70px;
+    position: relative; left: -20px; top: 16px;
+}
+
+.link{
+    color: #E16C40;
+}
+
+.dropDown{
+    background:  #f5d358;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
+/* Home/Index.jsx */
+
+.buttonHome{
+    margin: auto 10px;
+    border-radius: 10px !important;
+    background-color: #F4CA36 !important;
+    color: #E16C40;
+    text-align: center !important;
+    font-size: 18px !important;
+}
+
+.cardTutorial{
+    width: 380px;
+    background: #f7e6ac;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.textTutorial{
+    color: #2D3748;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.h1Home{
+    margin-top: 10px;
+    color: #2D3748;
+    font-size: 25px;
+    font-family: 'Segoe UI';
+}
+
+.paragraphHome {
+    margin: -20px 10px 20px 10px;
+    color: #2D3748;
+    font-size: 20px;
+}
+
+/* Login/Index.jsx */
+
+.cardForm{
+    border-radius: 10px !important;
+    background: #f7e6ac !important;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    width: 380px !important;
+}
+
+.textLogin{
+    color: #2D3748;
+    font-size: 15px;
+    text-transform: initial;
+}
+
+.inputLogin{
+    border-radius: 10px !important;
+    height: 50px;
+}
+
+.buttonLogin{
+    background-color: #F4CA36 !important;
+    color: #E16C40;
+    border-radius: 10px !important;
+    font-size: 20px;
+    height: 50px;
+    padding: 0 !important;
+}
+
+
+/* PetAdmin/Index.jsx */
+
+.textPetsAdmin{
+    color: #2D3748;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    text-align: center;
+    margin-top: 50px;
+}
+
+.buttonPetAdmin1{
+    position: absolute; bottom: 0px; width: 100%; z-index:0;
+}
+
+.buttonPetAdmin2{
+    background-color: #F4CA36 !important;
+    color: #E16C40;
+    border-radius: 10px 10px 0px 0px!important;
+    font-size: 20px;
+    height: 50px;
+    padding: 0 !important;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+}

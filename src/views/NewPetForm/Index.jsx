@@ -164,7 +164,7 @@ const Index = ({ match, user }) => {
         noValidate
         onSubmit={onHandelSubmit}
         style={formStyle}
-        className="w-full max-w-lg bg-white shadow-md px-8 pt-6 pb-8 mb-4"
+        className="cardForm w-full max-w-lg bg-white shadow-md px-8 pt-6 pb-8 mb-4"
       >
         <div className="flex justify-center mt-1 mb-8">
           <p style={alertStyle} className="text-lg italic">
@@ -174,7 +174,7 @@ const Index = ({ match, user }) => {
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="name"
             >
               Nombre
@@ -185,7 +185,7 @@ const Index = ({ match, user }) => {
               noValidate
               value={form.name}
               style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="name"
               type="text"
             ></input>
@@ -195,7 +195,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="type"
             >
               Tipo
@@ -206,7 +206,7 @@ const Index = ({ match, user }) => {
                 noValidate
                 value={form.type}
                 style={inputStyle}
-                className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="inputLogin block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 name="type"
               >
                 <option>Perro</option>
@@ -227,7 +227,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="breed"
             >
               Raza
@@ -238,7 +238,7 @@ const Index = ({ match, user }) => {
               value={form.breed}
               noValidate
               style={inputStyle}
-              className="appearance-none  block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none  block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="breed"
               type="text"
             ></input>
@@ -247,7 +247,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="sex"
             >
               Sexo
@@ -258,7 +258,7 @@ const Index = ({ match, user }) => {
                 noValidate
                 value={form.sex}
                 style={inputStyle}
-                className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="inputLogin block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 name="sex"
               >
                 <option>Macho</option>
@@ -278,7 +278,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="age"
             >
               Edad
@@ -288,7 +288,7 @@ const Index = ({ match, user }) => {
               noValidate
               value={form.age}
               style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="age"
               type="number"
             ></input>
@@ -297,7 +297,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="description"
             >
               Descripción general
@@ -308,7 +308,7 @@ const Index = ({ match, user }) => {
               value={form.description}
               noValidate
               style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="description"
               type="text"
             ></input>
@@ -319,7 +319,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="img"
             >
               Foto
@@ -329,7 +329,7 @@ const Index = ({ match, user }) => {
               // value={form.img}
               name="img"
               noValidate
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="file"
               accept="image/*"
             ></input>
@@ -340,7 +340,7 @@ const Index = ({ match, user }) => {
         <div className="flex justify-center lg:justify-end">
           <button
             style={buttonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            className="buttonLogin w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Bienvenido

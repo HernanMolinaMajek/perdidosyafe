@@ -34,17 +34,17 @@ const Index = ({ user }) => {
     borderTopLeftRadius: "1.5rem",
   };
   return (
-    <div className="flex flex-col">
+    <div className="textPetsAdmin flex flex-col">
       {userPets.length > 0 ? (
         userPets.map((pet) => <PetCard key={pet._id} info={pet} />)
       ) : (
-        <h1>no hay</h1>
+        <h1>No se reportó ninguna mascota perdida</h1>
       )}
 
-      <Link to="/newPetForm" className="absolute bottom-0 sticky z-40 w-full">
+      <Link to="/newPetForm" className="buttonPetAdmin1 absolute bottom-0 sticky z-40 w-full">
         <button
           style={buttonStyle}
-          className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+          className="buttonPetAdmin2 w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Nueva mascota

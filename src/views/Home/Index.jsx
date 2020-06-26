@@ -92,12 +92,12 @@ const Index = ({ setUserLocationInMap }) => {
       <div className="flex flex-col w-full mb-6">
         <div style={fondoStyle} className="w-full h-screen">
           <div className="px-4 lg:px-0 font-medium">
-            <h1 className="text-3xl text-center text-gray-800 leading-none lg:text-left lg:text-6xl lg:w-2/3">
+            <h1 className="textTutorial text-3xl text-center text-gray-800 leading-none lg:text-left lg:text-6xl lg:w-2/3">
               Encontrá a tu mascota mucho más rapido!
             </h1>
             <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
               Podemos ayudarte brindando un espacio para que vos y otros puedan
-              encontrar o avistar a nustros mejores amigos.
+              encontrar o avistar a nuestros mejores amigos.
             </p>
           </div>
           {/* <img className="w-full h-full" src={fondo} alt="" /> */}
@@ -106,7 +106,7 @@ const Index = ({ setUserLocationInMap }) => {
         <div className="flex w-full -mt-24 lg:-mt-12 mb-12 lg:mb-16 ">
           <button
             style={buttonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            className="buttonHome w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             onClick={openModal}
           >
             Definir mi ubicacion
@@ -114,7 +114,7 @@ const Index = ({ setUserLocationInMap }) => {
 
           <Link
             style={mapButtonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            className="buttonHome w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             to={"/missingPets"}
           >
             Ver lista de mascotas
@@ -123,7 +123,7 @@ const Index = ({ setUserLocationInMap }) => {
 
         <div className="flex flex-col w-full ">
           <div className="px-4 lg:px-0 font-medium">
-            <h1 className="text-3xl text-center text-gray-800 leading-none lg:text-center lg:text-6xl">
+            <h1 className="textTutorial text-3xl text-center text-gray-800 leading-none lg:text-center lg:text-6xl">
               Como funciona?
             </h1>
             {/* <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
@@ -137,42 +137,44 @@ const Index = ({ setUserLocationInMap }) => {
           </div>
 
           <div className="flex flex-col items-center p-5 lg:flex-row lg:justify-around">
-            <div className="flex flex-col  shadow-lg rounded-xl w-70 mb-12">
+            <div className="cardTutorial flex flex-col  shadow-lg rounded-xl w-70 mb-12">
               <div className="flex justify-around">
-                <h1>1</h1>
-                <h1 className="">Crear mascota</h1>
+                <h1 className="h1Home">1.</h1>
+                <h1 className="h1Home">Crear mascota</h1>
               </div>
               <img className="w-full h-full" src={newImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+              <p className="paragraphHome mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Para declarar una perdida y hacer que la comunidad ayude en la busqueda el 
+                primer paso es crear un perfil de tu mascota con sus caracteristicas unicas. 
+                {/*
                 Al mismo tiempo que la comunidad puede ver una lista ordenada
                 por proximidad de ellos y dar aviso al dueño si los llega a
                 encontrar
+                */}
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
               <div className="flex justify-around">
-                <h1>1</h1>
-                <h1 className="">Declarar perdida</h1>
+                <h1 className="h1Home">2.</h1>
+                <h1 className="h1Home">Declarar perdida</h1>
               </div>
               <img className="w-full h-full" src={lostImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
+              <p className="paragraphHome mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Luego de crear el perfil podrás declararlo como perdido, haciendo que figure 
+                en la pantalla de mascotas perdidas para que sea más facil identificarlo.
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
               <div className="flex justify-around">
-                <h1>1</h1>
-                <h1 className="">Contactar con dueño</h1>
+                <h1 className="h1Home">3.</h1>
+                <h1 className="h1Home">Contactar con dueño</h1>
               </div>
               <img className="w-full h-full" src={foundImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
+              <p className="paragraphHome mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                La comunidad de PerdidosYa® podrá avistar alguna mascota 
+                perdida o si lo prefiere contactar directamente con su dueño.
               </p>
             </div>
           </div>

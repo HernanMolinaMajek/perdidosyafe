@@ -48,12 +48,12 @@ const Index = ({ logIn }) => {
         noValidate
         onSubmit={onHandleSubmit}
         //style={formStyle}
-        className="w-full max-w-lg bg-gray-200 shadow-md px-8 pt-6 pb-8 "
+        className="cardForm  w-full max-w-lg bg-gray-200 shadow-md px-8 pt-6 pb-8 "
       >
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="email"
             >
               Email
@@ -62,7 +62,7 @@ const Index = ({ logIn }) => {
               noValidate
               //style={inputStyle}
               onChange={onHandleChange}
-              className="appearance-none block bg-green-200 w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin textLogin appearance-none block bg-green-200 w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="email"
               type="email"
             ></input>
@@ -70,7 +70,7 @@ const Index = ({ logIn }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="password"
             >
               Contraseña
@@ -80,7 +80,7 @@ const Index = ({ logIn }) => {
               noValidate
               //style={inputStyle}
               onChange={onHandleChange}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="password"
               type="password"
             ></input>
@@ -89,7 +89,7 @@ const Index = ({ logIn }) => {
 
         <div className="flex justify-center lg:justify-end">
           <button
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            className="buttonLogin w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Ingresar
