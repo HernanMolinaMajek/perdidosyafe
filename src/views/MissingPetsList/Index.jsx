@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { getDistance } from "geolib";
-
-import LossesPets from "../../fakeLosses.json";
-import Pets from "../../fakePets.json";
-import Owners from "../../fakeOwners.json";
+import nothing from "./nothing.png";
 import PetCard from "./PetCard";
 
-const Index = ({ userLocation }) => {
+const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
 
   useEffect(() => {
-    //setPets();
+    let loggedUserLocation = JSON.parse(localStorage.getItem("userLocation"));
+    if (loggedUserLocation === null) loggedUserLocation = {};
+
+    console.log(userLocation);
+    if (Object.entries(userLocation).length !== 0) {
+      orderAndSetMisingPetList();
+      console.log("entre por user location");
+    } else if (Object.entries(loggedUserLocation).length !== 0) {
+      orderAndSetMisingPetList();
+      console.log("entre por storage");
+    }
+  }, []);
+
+  const orderAndSetMisingPetList = () => {
     getMissingPets().then((pets) => {
       let pe = pets.map((mp) => {
         let parsedPosition = {
@@ -25,7 +35,7 @@ const Index = ({ userLocation }) => {
 
       setMissingPets(orderedList);
     });
-  }, []);
+  };
 
   const getMissingPets = async () => {
     const response = await fetch("http://localhost:3030/api/lost");
@@ -84,17 +94,18 @@ const Index = ({ userLocation }) => {
 
   //   setMissingPets(orderedList);
   // };
+  const fondoStyle = {
+    backgroundImage: `url(${nothing})`,
+    width: "100%",
+    height: "100vh",
+    backgroundPosition: "center",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+  };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#F6F6F6",
-        borderTopLeftRadius: "2.5rem",
-        borderTopRightRadius: "2.5rem",
-      }}
-      className="h-full px-6 pt-10"
-    >
-      <div className="w-full">
+    <div className="mx-6">
+      {/* <div className="w-full">
         <div className="relative">
           <select
             style={{ borderRadius: "1rem" }}
@@ -117,11 +128,17 @@ const Index = ({ userLocation }) => {
             </svg>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {missingPets.map((pet) => (
-        <PetCard key={pet._id} info={pet} />
-      ))}
+      {missingPets.length > 0 ? (
+        missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+      ) : (
+        <div style={fondoStyle} className="">
+          <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl ">
+            No hay mascotas perdidas!
+          </h1>
+        </div>
+      )}
     </div>
   );
 };

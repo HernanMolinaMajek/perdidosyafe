@@ -8,12 +8,11 @@ import {
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "90vh",
 };
 
 const options = {
-  disableDefaultUI: true,
-  zoomControl: true,
+  disableDefaultUI: true
 };
 
 const Tucuman = {
@@ -46,7 +45,7 @@ const Map = ({ setMapPosition, circleOn }) => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         options={options}
-        center={{lat:center.lat,lng:center.lng}}
+        center={center}
         zoom={14}
         onClick={(event) => {
           //setDot({lat:event.latLng.lat(),lng:event.latLng.lng()})

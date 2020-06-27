@@ -25,10 +25,6 @@ const Index = ({ match }) => {
     });
   }, []);
 
-  // function isEmpty(val) {
-  //   return Object.entries(val).length === 0 ? true : false;
-  // }
-
   const getPet = async () => {
     const response = await fetch(
       `http://localhost:3030/api/pet/${match.params.id}`
@@ -52,7 +48,7 @@ const Index = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form.date)
+    console.log(form.date);
     if (formValid(form)) {
       submit();
       setRedirect(true);
@@ -113,9 +109,11 @@ const Index = ({ match }) => {
       dateError = value === null ? "Seleccione una fecha" : "";
     }
 
+    let hour = new Date().getHours();
+    let min = new Date().getMinutes();
     setForm((prevForm) => {
       let aux = Object.assign({}, prevForm);
-      aux.date = value;
+      aux.date = `${value}T${hour}:${min}`;
       aux.formErrors.date = dateError;
       return aux;
     });
@@ -161,17 +159,55 @@ const Index = ({ match }) => {
   const modalStyle = {
     content: {
       position: "absolute",
-      top: "0px",
-      left: "0px",
-      right: "0px",
-      bottom: "0px",
-      //border: "1px solid rgb(204, 204, 204)",
-      //background: "rgb(255, 255, 255)",
-      overflow: "auto",
-      //borderRadius: "4px",
-      //outline: "none",
+      top: "5rem",
+      left: "12rem",
+      right: "12rem",
+      bottom: "5rem",
+      overflow: "hidden",
       padding: "0px",
     },
+  };
+
+  const modalSmStyle = {
+    content: {
+      position: "absolute",
+      top: "0rem",
+      left: "0rem",
+      right: "0rem",
+      bottom: "0rem",
+      overflow: "hidden",
+      padding: "0px",
+    },
+  };
+
+  const isClientMobile = () => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      return true;
+    } else return false;
+  };
+
+  function isEmpty(val) {
+    return Object.entries(val).length === 0 ? true : false;
+  }
+
+  const aceptMapPosition = () => {
+    if (isEmpty(position)) {
+      form.formErrors.position = "Seleccione una posicion";
+      console.log("position es empty");
+    } else {
+      setForm((prevForm) => {
+        console.log("position esta lleno");
+        closeModal();
+        let aux = Object.assign({}, prevForm);
+        aux.position = position;
+        aux.formErrors.position = "";
+        return aux;
+      });
+    }
+  };
+
+  const setMapPosition = (position) => {
+    setPosition(position);
   };
 
   return (
@@ -249,11 +285,11 @@ const Index = ({ match }) => {
           >
             Reportar Pérdida
           </button>
-          {redirect && <Redirect to={"/"} />}
+          {redirect && <Redirect to={"/petadmin"} />}
         </div>
       </form>
 
-      <Modal isOpen={isModalOpen} className="overflow-hidden">
+      {/* <Modal isOpen={isModalOpen} className="overflow-hidden">
         <div className="flex flex-col realtive">
           <Map setMapPosition={handleMapChange} circleOn={true} />
 
@@ -265,6 +301,57 @@ const Index = ({ match }) => {
           >
             {form.position ? "Aceptar" : "Cancelar"}
           </button>
+        </div>
+      </Modal> */}
+
+      <Modal
+        onRequestClose={closeModal}
+        isOpen={isModalOpen}
+        style={isClientMobile() ? modalSmStyle : modalStyle}
+      >
+        <div className="flex flex-col realtive">
+          {/* <Map setMapPosition={handleMapChange} circleOn={true} /> */}
+          <Map setMapPosition={setMapPosition} circleOn={true} />
+
+          <div className="bg-white w-full h-20 z-40 absolute bottom-0">
+            <div className="flex flex-row  p-5 items-center  font-medium">
+              <p className="w-2/3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Dinos dónde fue que se perdió..
+              </p>
+              {isClientMobile() ? (
+                <button
+                  onClick={closeModal}
+                  className="bg-orange-200 w-1/3 mx-2"
+                >
+                  Cerrar
+                </button>
+              ) : null}
+              {/* <button
+                onClick={closeModal}
+                className="bg-orange-200 w-1/3 mx-2"
+              >
+                Aceptar
+              </button> */}
+              <button
+                onClick={aceptMapPosition}
+                className={
+                  isEmpty(position)
+                    ? "bg-red-200 w-1/3 mx-2"
+                    : "bg-green-200 w-1/3 mx-2"
+                }
+              >
+                {isEmpty(position) ? "Seleccione una ubicacion" : "Aceptar"}
+              </button>
+            </div>
+          </div>
+          {/* <button
+            onClick={aceptMapPosition}
+            style={mapButtonStyle}
+            className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            Aceptar
+          </button> */}
         </div>
       </Modal>
     </div>

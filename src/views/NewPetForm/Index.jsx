@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import modal from "react-modal";
+import { Redirect } from "react-router-dom";
 const Index = ({ match, user }) => {
   const isEditig = Object.entries(match.params).length === 0 ? false : true;
   const method = isEditig ? "PUT" : "POST";
+  const [redirect, setRedirect] = useState(false);
 
   const [formErrors, setFormErrors] = useState({
     name: "",
@@ -12,25 +14,27 @@ const Index = ({ match, user }) => {
     img: "",
   });
 
+  const [imgState, setImgState] = useState({});
   const [form, setForm] = useState({
-    _ownerId: user._name,
+    _ownerId: user._id,
     name: "",
     sex: "Macho",
     type: "Perro",
     breed: "",
     description: "",
     age: "",
-
     isLost: false,
   });
 
   useEffect(() => {
     if (isEditig) {
       getPet().then((pet) => {
-        setForm((prevForm) => {
-          pet._ownerId = user._id;
-          return pet;
-        });
+        // setForm((prevForm) => {
+        //   pet._ownerId = user._id;
+        //   return pet;
+        // });
+        pet._ownerId = user._id;
+        setForm(pet);
       });
     }
   }, []);
@@ -55,24 +59,45 @@ const Index = ({ match, user }) => {
       `http://localhost:3030/api/pet/${match.params.id}`
     );
     const data = await response.json();
+    console.log("gett petts");
     return data[0];
   };
 
-  const onHandelSubmit = async (e) => {
-    e.preventDefault();
+  const deletePet = async () => {
+    console.log("delete petts");
+    try {
+      let resutl = await fetch(`http://localhost:3030/api/pet/${form._id}`, {
+        method: "delete",
+        cors: "no-cors",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        //body: JSON.stringify(form),
+      });
+      console.log(resutl);
+      setRedirect(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const submitData = async () => {
     const formData = new FormData();
     for (const prop in form) {
       formData.append(prop, form[prop]);
+      console.log("prop",prop)
+      console.log("form[prop]",form[prop])
     }
+    formData.append("img", imgState);
 
     try {
       let resutl = await fetch("http://localhost:3030/api/pet", {
         method: method,
         cors: "no-cors",
         headers: {
-          accept: "application/json",
-          "content-type": "multipart/form-data", //"application/json",
+          //accept: "application/json",
+          //"Content-Type": "multipart/form-data", //"application/json",
         },
         body: formData, //JSON.stringify(form),
       });
@@ -84,26 +109,92 @@ const Index = ({ match, user }) => {
 
   const onHandleChange = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+    let errors = formErrors;
+
+    switch (name) {
+      case "name": {
+        errors.name =
+          value.length < 3
+            ? "El nombre debe contener al menos 3 caracteres"
+            : "";
+        break;
+      }
+      case "breed": {
+        errors.breed =
+          value.length < 2 ? "La raza debe contener al menos 2 caracteres" : "";
+        break;
+      }
+      case "description": {
+        errors.description =
+          value.length < 15
+            ? "La descripcion deb contener al menos 15 caracteres"
+            : "";
+        break;
+      }
+      case "age": {
+        errors.age = value.length > 0 ? "" : "La edad no puede estar vacia";
+        break;
+      }
+      case "img": {
+        errors.img = value.length > 0 ? "" : "Debe subir una imagen";
+        break;
+      }
+    }
+
     setForm((prevForm) => {
       let aux = Object.assign({}, prevForm);
-      aux[name] = value;
+      if (name === "img") {
+        setImgState(files[0]);
+      } else {
+        aux[name] = value;
+      }
       return aux;
     });
   };
 
-  // const formValid = ({ formErrors, ...rest }) => {
-  //   let valid = true;
-  //   Object.values(formErrors).forEach((error) => {
-  //     error.length > 0 && (valid = false);
-  //   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //   Object.values(rest).forEach((val) => {
-  //     val === null && (valid = false);
-  //   });
+    if (formValid()) {
+      submitData();
+      setRedirect(true);
+    } else {
+      setFormErrors((prevErrors) => {
+        let aux = Object.assign({}, prevErrors);
+        if (form.name === "")
+          aux.name = "El nombre debe contener al menos 3 caracteres";
+        if (form.breed === "")
+          aux.breed = "La raza debe contener al menos 2 caracteres";
+        if (form.description === "")
+          aux.description =
+            "La descripcion deb contener al menos 15 caracteres";
+        if (form.age === "") aux.age = "La edad no puede estar vacia";
+        if (Object.keys(imgState).length === 0)
+          aux.img = "Debe subir una imagen";
 
-  //   return valid;
-  // };
+        return aux;
+      });
+    }
+  };
+
+  const formValid = () => {
+    let valid = true;
+
+    Object.values(formErrors).forEach((error) => {
+      error.length > 0 && (valid = false);
+    });
+
+    Object.values(form).forEach((val) => {
+      val === "" && (valid = false);
+    });
+
+    Object.values(imgState).forEach((val) => {
+      val === "" && (valid = false);
+    });
+
+    return valid;
+  };
 
   // const onHandleChange = (e) => {
   //   e.preventDefault();
@@ -160,17 +251,13 @@ const Index = ({ match, user }) => {
 
   return (
     <div className="flex justify-center items-center w-full h-full">
+      {redirect && <Redirect to="/petadmin" />}
       <form
         noValidate
-        onSubmit={onHandelSubmit}
+        onSubmit={handleSubmit}
         style={formStyle}
         className="cardForm w-full max-w-lg bg-white shadow-md px-8 pt-6 pb-8 mb-4"
       >
-        <div className="flex justify-center mt-1 mb-8">
-          <p style={alertStyle} className="text-lg italic">
-            Danos toda la información posible!
-          </p>
-        </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -188,9 +275,11 @@ const Index = ({ match, user }) => {
               className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="name"
               type="text"
-            ></input>
+            />
 
-            {/* {form.formErrors.name.length > 0 ? "No puede estar vacio" : ""} */}
+            {formErrors.name.length > 0 && (
+              <span className="text-red-500">{formErrors.name}</span>
+            )}
           </div>
 
           <div className="w-full md:w-1/2 mb-6 px-3">
@@ -227,6 +316,7 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
+
               className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="breed"
             >
@@ -248,6 +338,7 @@ const Index = ({ match, user }) => {
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
               className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+
               htmlFor="sex"
             >
               Sexo
@@ -278,7 +369,31 @@ const Index = ({ match, user }) => {
 
           <div className="w-full md:w-1/2 mb-6 px-3">
             <label
+
               className="textLogin block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              htmlFor="breed"
+            >
+              Raza
+            </label>
+            <input
+              maxLength="15"
+              onChange={onHandleChange}
+              value={form.breed}
+              noValidate
+              style={inputStyle}
+              className="appearance-none  block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              name="breed"
+              type="text"
+            />
+            {formErrors.breed.length > 0 && (
+              <span className="text-red-500">{formErrors.breed}</span>
+            )}
+          </div>
+
+          <div className="w-full md:w-1/2 mb-6 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+
               htmlFor="age"
             >
               Edad
@@ -291,8 +406,10 @@ const Index = ({ match, user }) => {
               className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="age"
               type="number"
-            ></input>
-            {/* {form.formErrors.age.length > 0 ? "No puede estar vacio" : ""} */}
+            />
+            {formErrors.age.length > 0 && (
+              <span className="text-red-500">{formErrors.age}</span>
+            )}
           </div>
 
           <div className="w-full md:w-1/2 mb-6 px-3">
@@ -302,19 +419,20 @@ const Index = ({ match, user }) => {
             >
               Descripción general
             </label>
-            <input
-              maxLength="30"
+            <textarea
+              name="description"
               onChange={onHandleChange}
               value={form.description}
               noValidate
               style={inputStyle}
-              className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              name="description"
-              type="text"
-            ></input>
-            {/* {form.formErrors.description.length > 0
-              ? "No puede estar vacio"
-              : ""} */}
+
+              className="inputLogin  h-40 w-full focus:outline-none text-gray-700 p-3 leading-tight"
+              maxLength="225"
+            />
+            {formErrors.description.length > 0 && (
+              <span className="text-red-500">{formErrors.description}</span>
+            )}
+
           </div>
 
           <div className="w-full md:w-1/2 mb-6 px-3">
@@ -332,8 +450,10 @@ const Index = ({ match, user }) => {
               className="inputLogin appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="file"
               accept="image/*"
-            ></input>
-            {/* {form.formErrors.img.length > 0 ? "Debe cargar una foto" : ""} */}
+            />
+            {formErrors.img.length > 0 && (
+              <span className="text-red-500">{formErrors.img}</span>
+            )}
           </div>
         </div>
 
@@ -346,6 +466,18 @@ const Index = ({ match, user }) => {
             Bienvenido
           </button>
         </div>
+        {isEditig ? (
+          <div className="flex justify-center lg:justify-end">
+            <button
+              style={buttonStyle}
+              className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+              onClick={deletePet}
+              type="button"
+            >
+              Eliminar Mascota
+            </button>
+          </div>
+        ) : null}
       </form>
     </div>
   );

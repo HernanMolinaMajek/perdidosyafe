@@ -9,75 +9,75 @@ import foundImg from "./found.png";
 
 //Modal.setAppElement("#root");
 const Index = ({ setUserLocationInMap }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [position, setPosition] = useState({});
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [position, setPosition] = useState({});
 
-  const setMapPosition = (position) => {
-    setPosition(position);
-  };
+  // const setMapPosition = (position) => {
+  //   setPosition(position);
+  // };
 
-  function isEmpty(val) {
-    return Object.entries(val).length === 0 ? true : false;
-  }
+  // function isEmpty(val) {
+  //   return Object.entries(val).length === 0 ? true : false;
+  // }
 
-  const openModal = () => {
-    setMapPosition({});
-    //setUserLocationInMap(position)
+  // const openModal = () => {
+  //   setMapPosition({});
+  //   //setUserLocationInMap(position)
 
-    setIsModalOpen(true);
-  };
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setMapPosition({});
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setMapPosition({});
+  //   setIsModalOpen(false);
+  // };
 
-  const aceptMapPosition = () => {
-    if (isEmpty(position)) {
-      alert("no selecciono");
-    } else {
-      setUserLocationInMap(position);
-      setIsModalOpen(false);
-    }
-  };
+  // const aceptMapPosition = () => {
+  //   if (isEmpty(position)) {
+  //     alert("no selecciono");
+  //   } else {
+  //     setUserLocationInMap(position);
+  //     setIsModalOpen(false);
+  //   }
+  // };
 
-  const mapButtonStyle = {
-    backgroundColor: "#306060",
+  // const mapButtonStyle = {
+  //   backgroundColor: "#306060",
 
-    borderTopRightRadius: "1rem",
-  };
+  //   borderTopRightRadius: "1rem",
+  // };
 
-  const buttonStyle = {
-    backgroundColor: "#306060",
-    borderRadius: "1rem",
-  };
+  // const buttonStyle = {
+  //   backgroundColor: "#306060",
+  //   borderRadius: "1rem",
+  // };
 
-  const formStyle = {
-    backgroundColor: "#F6F6F6",
-    borderRadius: "2.5rem",
-  };
-  const alertStyle = {
-    color: "#306060",
-  };
-  const inputStyle = {
-    borderRadius: "1rem",
-  };
+  // const formStyle = {
+  //   backgroundColor: "#F6F6F6",
+  //   borderRadius: "2.5rem",
+  // };
+  // const alertStyle = {
+  //   color: "#306060",
+  // };
+  // const inputStyle = {
+  //   borderRadius: "1rem",
+  // };
 
-  const modalStyle = {
-    content: {
-      position: "absolute",
-      top: "0px",
-      left: "0px",
-      right: "0px",
-      bottom: "0px",
-      //border: "1px solid rgb(204, 204, 204)",
-      //background: "rgb(255, 255, 255)",
-      overflow: "auto",
-      //borderRadius: "4px",
-      //outline: "none",
-      padding: "0px",
-    },
-  };
+  // const modalStyle = {
+  //   content: {
+  //     position: "absolute",
+  //     top: "0px",
+  //     left: "0px",
+  //     right: "0px",
+  //     bottom: "0px",
+  //     //border: "1px solid rgb(204, 204, 204)",
+  //     //background: "rgb(255, 255, 255)",
+  //     overflow: "auto",
+  //     //borderRadius: "4px",
+  //     //outline: "none",
+  //     padding: "0px",
+  //   },
+  // };
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
@@ -103,7 +103,7 @@ const Index = ({ setUserLocationInMap }) => {
           {/* <img className="w-full h-full" src={fondo} alt="" /> */}
         </div>
 
-        <div className="flex w-full -mt-24 lg:-mt-12 mb-12 lg:mb-16 ">
+        {/* <div className="flex w-full -mt-24 lg:-mt-12 mb-12 lg:mb-16 ">
           <button
             style={buttonStyle}
             className="buttonHome w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
@@ -119,11 +119,13 @@ const Index = ({ setUserLocationInMap }) => {
           >
             Ver lista de mascotas
           </Link>
-        </div>
+        </div> */}
 
         <div className="flex flex-col w-full ">
-          <div className="px-4 lg:px-0 font-medium">
+
+          <div className="px-4 -mt-16 lg:-mt-5 mb-16 lg:px-0 font-medium">
             <h1 className="textTutorial text-3xl text-center text-gray-800 leading-none lg:text-center lg:text-6xl">
+
               Como funciona?
             </h1>
             {/* <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
@@ -136,27 +138,25 @@ const Index = ({ setUserLocationInMap }) => {
             </p> */}
           </div>
 
-          <div className="flex flex-col items-center p-5 lg:flex-row lg:justify-around">
-            <div className="cardTutorial flex flex-col  shadow-lg rounded-xl w-70 mb-12">
+
+          <div className="flex flex-col lg:-mx-32 bg-orange-300 items-center p-8 lg:flex-row lg:justify-around">
+            <div className="cardTutorial  flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
+
               <div className="flex justify-around">
                 <h1 className="h1Home">1.</h1>
                 <h1 className="h1Home">Crear mascota</h1>
               </div>
               <img className="w-full h-full" src={newImg} alt="" />
+
               <p className="paragraphHome mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
                 Para declarar una perdida y hacer que la comunidad ayude en la busqueda el 
-                primer paso es crear un perfil de tu mascota con sus caracteristicas unicas. 
-                {/*
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
-                */}
+                primer paso es crear un perfil de tu mascota con sus caracteristicas unicas.
               </p>
             </div>
 
-            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
               <div className="flex justify-around">
-                <h1 className="h1Home">2.</h1>
+                <h1 className="h1Home" >2</h1>
                 <h1 className="h1Home">Declarar perdida</h1>
               </div>
               <img className="w-full h-full" src={lostImg} alt="" />
@@ -166,12 +166,14 @@ const Index = ({ setUserLocationInMap }) => {
               </p>
             </div>
 
-            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="cardTutorial flex flex-col bg-white shadow-lg rounded-xl w-70 lg:mb-0">
+
               <div className="flex justify-around">
                 <h1 className="h1Home">3.</h1>
                 <h1 className="h1Home">Contactar con dueño</h1>
               </div>
               <img className="w-full h-full" src={foundImg} alt="" />
+
               <p className="paragraphHome mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
                 La comunidad de PerdidosYa® podrá avistar alguna mascota 
                 perdida o si lo prefiere contactar directamente con su dueño.
@@ -181,7 +183,7 @@ const Index = ({ setUserLocationInMap }) => {
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         
         onRequestClose={closeModal}
         isOpen={isModalOpen}
@@ -203,7 +205,7 @@ const Index = ({ setUserLocationInMap }) => {
             Aceptar
           </button>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

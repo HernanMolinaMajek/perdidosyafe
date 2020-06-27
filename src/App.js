@@ -24,18 +24,39 @@ const App = () => {
   //   //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
   // }, []);
 
+  useEffect(() => {
+    //setUser(JSON.parse(localStorage.getItem('user')))
+    let loggedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedUser !== null) {
+      setUser(loggedUser);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const setUserLocationInMap = (position) => {
+    localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
     setUserLocation(position);
   };
 
   const logOut = () => {
-    setIsAuthenticated(false);
     setUser({});
+    setIsAuthenticated(false);
+    localStorage.clear();
   };
 
   const logIn = (user) => {
-    setIsAuthenticated(true);
     setUser(user);
+    setIsAuthenticated(true);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        _id: user._id,
+        name: user.name,
+        phone: user.phone,
+      })
+    );
   };
 
   // const getLoggedUser = (userId) => {
@@ -52,6 +73,7 @@ const App = () => {
         <NavBar
           userName={user.name}
           authenticated={isAuthenticated}
+          setUserLocationInMap={setUserLocationInMap}
           logOut={logOut}
         />
 
@@ -76,7 +98,7 @@ const App = () => {
             />
 
             <Route
-              path="/petAdmin"
+              path="/petadmin"
               render={(props) => <PetAdmin {...props} user={user} />}
             />
 
