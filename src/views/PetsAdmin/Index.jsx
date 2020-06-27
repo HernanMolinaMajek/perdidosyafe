@@ -51,10 +51,11 @@ const Index = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="textPetsAdmin flex flex-col">
       {userPets.length > 0 ? (
         userPets.map((pet) => <PetCard key={pet._id} info={pet} />)
       ) : (
+
         <div style={fondoStyle} className="">
           <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl lg:w-2/3">
             No tienes ninguna mascota todavia!
@@ -62,10 +63,11 @@ const Index = ({ user }) => {
         </div>
       )}
 
-      <Link to="/newPetForm" className="absolute bottom-0 sticky z-0 w-full">
+      <Link to="/newPetForm" className="buttonPetAdmin1 absolute bottom-0 sticky z-0 w-full">
+
         <button
           style={buttonStyle}
-          className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+          className="buttonPetAdmin2 w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Nueva mascota

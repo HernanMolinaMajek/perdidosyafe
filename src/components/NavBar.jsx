@@ -89,11 +89,12 @@ const NavBar = ({
   };
 
   return (
-    <nav className="flex flex-col items-start bg-orange-300 mb-6 lg:flex-row lg:justify-between lg:items-center lg:px-5 relative lg:w-full ">
-      {/* {redirect && <Redirect to={"/missingPets"} />} */}
-      <div className="flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
+
+    <nav className="flex flex-col items-start bg-white mb-3 lg:flex-row lg:justify-between lg:items-center lg:mx-5 relative ">
+      <div className="NavBar1 flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
+
         <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
-          <svg fill="#969696" viewBox="0 0 100 80" width="25" height="25">
+          <svg fill="#2d3748" viewBox="0 0 100 80" width="25" height="25">
             <rect x="25" width="50" height="10" rx="8"></rect>
             <rect y="30" width="100" height="10" rx="8"></rect>
             <rect x="25" y="60" width="50" height="10" rx="8"></rect>
@@ -107,7 +108,13 @@ const NavBar = ({
             }}
             to={"/"}
           >
-            <h1 className="text-red-400">Perdidos ya</h1>
+            <div>
+              <img class="log" src="./PerdidosYa_Logo_03.svg" alt=""></img>
+            </div>
+            <div>
+              <h1 className="text-red-400">erdidos ya</h1>
+            </div>
+
           </Link>
         </div>
 
@@ -115,10 +122,13 @@ const NavBar = ({
       </div>
 
       <div className={`${isMenuActive ? "" : "hidden"} lg:flex`}>
-        <div className="text-md bg-gray-800 text-white absolute items-center top-0 mt-16 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0  lg:bg-transparent ">
+
+        <div className="dropDown text-md bg-gray-800 text-white absolute items-center top-0 mt-16 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0 lg:justify-center lg:flex-row ">
           {authenticated ? (
-            <div className="flex flex-col lg:items-center lg:flex-row ">
-              <div className=" lg:mt-0  hover:text-white lg:mr-4 ">
+            <div>
+              <div className="block lg:inline-block lg:mt-0 hover:text-white lg:mx-6 ">
+                <div className=" lg:mt-0  hover:text-white lg:mr-4 ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -129,6 +139,7 @@ const NavBar = ({
                 </Link>
               </div>
 
+
               <div className=" mt-4  lg:mt-0 hover:text-white lg:mr-4">
                 <div className="cursor-pointer" onClick={openModal}>
                   Mascotas Perdidas
@@ -136,7 +147,8 @@ const NavBar = ({
                 {/* {redirect && <Redirect to={"/missingPets"} />} */}
               </div>
 
-              <div className="mt-4  lg:mt-0 hover:text-white lg:mr-4 ">
+              <div className="link mt-4  lg:mt-0 hover:text-white lg:mr-4 ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -147,7 +159,8 @@ const NavBar = ({
                 </Link>
               </div>
 
-              <div className="mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
+              <div className="link mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -160,12 +173,15 @@ const NavBar = ({
 
               <div
                 onClick={logOut}
-                className="mt-4 lg:mt-0 hover:text-white lg:mr-4 cursor-pointer"
+
+                className="link mt-4 lg:mt-0 hover:text-white lg:mr-4 cursor-pointer"
+
               >
                 Cerrar sesión
               </div>
             </div>
           ) : (
+
             <div className="flex flex-col lg:items-center lg:flex-row">
               <div className="lg:mt-0 hover:text-white lg:mr-4">
                 <div className="cursor-pointer" onClick={openModal}>
@@ -173,7 +189,8 @@ const NavBar = ({
                 </div>
                 {/* {redirect && <Redirect to={"/missingPets"} />} */}
               </div>
-              <div className="mt-4 lg:mt-0 hover:text-white lg:hidden ">
+              <div className="link mt-4 lg:mt-0 hover:text-white lg:hidden ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -183,7 +200,9 @@ const NavBar = ({
                   Home
                 </Link>
               </div>
-              <div className="mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
+
+              <div className=" link mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -193,7 +212,9 @@ const NavBar = ({
                   Registrarse
                 </Link>
               </div>
-              <div className=" mt-4 lg:mt-0 hover:text-white lg:mr-4 ">
+
+              <div className="link mt-4 lg:mt-0 hover:text-white lg:mr-4 ">
+
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
